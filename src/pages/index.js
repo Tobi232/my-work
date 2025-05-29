@@ -13,7 +13,7 @@ return (
     <Navbar />
     <main className="p-4 max-w-6xl mx-auto">
         <h1 className="text-3xl font-semibold text-indigo-700 mb-4">
-        Welcome to Bells MarketShop
+        Welcome to Bells Consult
         </h1>
         <p className="text-gray-600 mb-6">
         Buy and sell easily within the university community!
