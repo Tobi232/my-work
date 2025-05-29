@@ -1,5 +1,6 @@
 import Navbar from "../app/components/Navbar";
 import { useState } from "react";
+import Link from "next/link";
 
 function WelcomeBack({ email }) {
     return (
@@ -14,12 +15,12 @@ function WelcomeBack({ email }) {
                     alt="Welcome"
                     className="mx-auto mb-6 w-32 h-32 object-contain"
                 />
-                <a
+                <Link
                     href="/purchases"
                     className="inline-block bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition"
                 >
                     Go to Home
-                </a>
+                </Link>
             </div>
         </div>
     );

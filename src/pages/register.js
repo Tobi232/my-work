@@ -1,4 +1,5 @@
 import Navbar from "../app/components/Navbar";
+import Link from "next/link";
 import { useState } from "react";
 
 function RegistrationSuccess({ email }) {
@@ -10,17 +11,12 @@ function RegistrationSuccess({ email }) {
                     Welcome, <span className="font-semibold text-indigo-600">{email}</span>! <br />
                     You can now log in to your account.
                 </p>
-                <img
-                    src="/welcome.png"
-                    alt="Welcome"
-                    className="mx-auto mb-6 w-32 h-32 object-contain"
-                />
-                <a
+                <Link
                     href="/login"
                     className="inline-block bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition"
                 >
                     Go to Login
-                </a>
+                </Link>
             </div>
         </div>
     );
