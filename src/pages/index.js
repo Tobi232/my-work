@@ -4,6 +4,7 @@
 import Navbar from "../app/components/Navbar";
 import Categories from "../app/components/Categories";
 import ProductList from "../app/components/ProductList";
+import Footer from "../app/components/footer";
 
 
 export default function Home() {
@@ -20,6 +21,7 @@ return (
 
         <Categories />
         <ProductList />
+        <Footer />
     </main>
     </div>
 );

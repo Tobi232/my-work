@@ -1,18 +1,35 @@
+import fs from "fs";
+import path from "path";
 
-    // === 7. Backend API Routes ===
-    // File: pages/api/register.js
+const usersFile = path.join(process.cwd(), "users.json");
 
-    let users = [];
+function readUsers() {
+    if (!fs.existsSync(usersFile)) return [];
+    const data = fs.readFileSync(usersFile);
+    return JSON.parse(data);
+}
 
-    export default function handler(req, res) {
-    if (req.method === "POST") {
-        const { email, password } = req.body;
-        const userExists = users.find((u) => u.email === email);
-        if (userExists) {
-        return res.status(400).json({ message: "User already exists" });
-        }
-        users.push({ email, password });
-        return res.status(200).json({ message: "Registration successful" });
+function writeUsers(users) {
+    fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
+}
+
+export default function handler(req, res) {
+    if (req.method !== "POST") {
+        return res.status(405).json({ message: "Method not allowed" });
     }
-    res.status(405).json({ message: "Method not allowed" });
+
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return res.status(400).json({ message: "Email and password required" });
     }
+
+    const users = readUsers();
+    if (users.find((u) => u.email === email)) {
+        return res.status(409).json({ message: "Email already registered" });
+    }
+
+    users.push({ email, password }); // In production, hash the password!
+    writeUsers(users);
+
+    return res.status(201).json({ message: "Registration successful" });
+}
